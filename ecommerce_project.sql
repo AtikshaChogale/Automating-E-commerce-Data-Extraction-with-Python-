@@ -28,3 +28,19 @@ SELECT title,
 FROM products
 WHERE stock < 10
 AND Rating>4.5;
+
+
+SELECT category, 
+	ROUND(AVG(price),2) AS Avg_price,
+    COUNT(*) AS Total_products
+FROM products
+GROUP BY category
+ORDER BY Avg_price;
+
+
+SELECT category,
+	SUM(price*stock) AS Revenue,
+    COUNT(*) AS Total
+FROM products
+GROUP BY category
+ORDER BY Revenue DESC;
