@@ -14,10 +14,6 @@ SELECT id, title, price, stock
 FROM products
 WHERE price <= 0 OR stock <0;
 
-SELECT title, reviews, stock
-FROM products
-WHERE stock<10 ;
-
 UPDATE products
 SET reviews = REPLACE(reviews, '''', '"')
 WHERE reviews LIKE '%''%';
@@ -44,3 +40,9 @@ SELECT category,
 FROM products
 GROUP BY category
 ORDER BY Revenue DESC;
+
+SELECT category, title, discountPercentage,
+	JSON_EXTRACT(reviews, '$[0].rating') AS Rating
+FROM products
+WHERE discountPercentage>0
+ORDER BY discountPercentage DESC;
