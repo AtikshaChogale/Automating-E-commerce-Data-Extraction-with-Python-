@@ -46,3 +46,12 @@ SELECT category, title, discountPercentage,
 FROM products
 WHERE discountPercentage>0
 ORDER BY discountPercentage DESC;
+
+SELECT title, 
+       stock, 
+       JSON_EXTRACT(reviews, '$[0].rating') AS Rating,
+       category
+FROM products 
+WHERE stock > 50 
+	AND JSON_EXTRACT(reviews, '$[0].rating') < 3.0
+ORDER BY stock DESC;
